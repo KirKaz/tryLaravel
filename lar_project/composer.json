@@ -24,9 +24,9 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "App\\": "lar_project/app/",
+            "Database\\Factories\\": "lar_project/database/factories/",
+            "Database\\Seeders\\": "lar_project/database/seeders/"
         }
     },
     "autoload-dev": {
