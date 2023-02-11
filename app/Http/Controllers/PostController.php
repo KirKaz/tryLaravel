@@ -26,16 +26,16 @@ class PostController extends Controller
         }
     }
 
-    public function read($id = 1)
+    public function read($id)
     {
         $post = Post::find($id);
-        return view('post.view', compact($id, $post));
+        return view('postView', ['post'=>$post]);
     }
 
     public function getPostsList()
     {
-        $post = Post::all();
-        return view('postsList', ['posts'=>$post]);
+        $posts = Post::all();
+        return view('postsList', ['posts'=>$posts]);
     }
 
 }
