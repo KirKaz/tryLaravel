@@ -4,11 +4,37 @@ services:
     nginx:
         image: nginx:latest
         volumes:
-            - ./:/var/www/
-            - ./nginx/conf.d/:/etc/nginx/conf.d/
+            - ./:/var/www
+            - ./_docker/nginx/conf.d:/etc/nginx/conf.d
         ports:
             - "8876:80"
-        container_name: app_lar
+        depends_on:
+            - app
+        container_name: project_nginx
 
+    app:
+        build:
+            context: .
+            dockerfile: _docker/app/Dockerfile
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - db
+        container_name: lar_app
 
+    db:
+        image: postgres:15
+        restart: always
+        volumes:
+            - ./tmp/db:/var/lib/psql
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: root
+            POSTGRES_DB: lar-docker
+        container_name: project_db
 
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - "8080:8080"
