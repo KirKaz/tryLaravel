@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 @section('content')
     @foreach($posts as $post)
         <div class="card">
